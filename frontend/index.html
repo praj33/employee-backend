@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+      background: #f4f6f8;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .dashboard, .task-form, .task-list-container {
+      background: #fff;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s;
+    }
+
+    .dark-mode .dashboard,
+    .dark-mode .task-form,
+    .dark-mode .task-list-container {
+      background-color: #1e1e1e;
+      box-shadow: none;
+    }
+
+    .dashboard p {
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .filters {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .filters button {
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+
+    .filters button:hover {
+      background-color: #2980b9;
+    }
+
+    #task-form input, #task-form button {
+      display: block;
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    #task-form button {
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+    }
+
+    #task-form button:hover {
+      background-color: #27ae60;
+    }
+
+    ul#task-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    li.task-item {
+      background-color: #ecf0f1;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dark-mode li.task-item {
+      background-color: #2b2b2b;
+    }
+
+    .task-actions button {
+      margin-left: 0.5rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .edit-btn {
+      background-color: #f1c40f;
+      color: white;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .edit-btn:hover {
+      background-color: #d4ac0d;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .dark-mode input,
+    .dark-mode button {
+      background-color: #2c2c2c;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <button id="theme-toggle">🌙 Dark Mode</button>
+
+  <h1>Task List</h1>
+
+  <div class="dashboard">
+    <h2>Dashboard</h2>
+    <p>Total Tasks: <span id="total-tasks">0</span></p>
+    <p>Completed Tasks: <span id="completed-tasks">0</span></p>
+    <p>In Progress Tasks: <span id="inprogress-tasks">0</span></p>
+    <p>Overdue Tasks: <span id="overdue-tasks">0</span></p>
+  </div>
+
+  <div class="filters">
+    <button onclick="loadTasks()">All</button>
+    <button onclick="loadTasks('Completed')">Completed</button>
+    <button onclick="loadTasks('In Progress')">In Progress</button>
+    <button onclick="loadTasks('Overdue')">Overdue</button>
+  </div>
+
+  <div class="task-list-container">
+    <ul id="task-list"></ul>
+  </div>
+
+  <div class="task-form">
+    <h2>Add Task</h2>
+    <form id="task-form">
+      <input type="text" id="title" placeholder="Title" required />
+      <input type="text" id="status" placeholder="Status" required />
+      <input type="number" id="assigned_to" placeholder="Assigned To (Employee ID)" required />
+      <input type="date" id="due_date" required />
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
