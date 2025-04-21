@@ -65,7 +65,6 @@ node index.js
 ### Frontend Setup (HTML + JavaScript)
 
 1. Navigate to the `frontend/` folder:
-```bash
 cd frontend
 
 ## 👤 Author
